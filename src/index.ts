@@ -13,33 +13,23 @@ app.use(express.json());
 app.listen(port)
 app.post('/merchants', function(req, res) {
     let request = req.body
-    console.log("received request:")
-    console.log(request)
     let referringMerchant = request.referringMerchant
     let merchantsjson = request.merchantsPool
     
+    console.log("received request:")
+    console.log(request)
+    
     let merchants = []
     for(let id in merchantsjson) {
-        merchants.push({
-            city : 1,
-            lat : merchantsjson[id].coordinates.lat,
-            lng : merchantsjson[id].coordinates.lng,
-
-            ateco: merchantsjson[id].ateco,
-            owner : merchantsjson[id].name,
-            id : id,
-            capability : 1,
-            coupons : 1,
-            sort: null
-        })
+        merchants.push(createMerchantFrom(merchantsjson[id], id))
     }
 
-    let genetic = new Genetic(referringMerchant, merchants, team_size, dispersion, fitness, {
-        mutation_probability: 0.01,
-        crossover_probability: 0.80,
-        population: 50,
-        iterations: 100
-    });
+    if(merchants.length <= team_size) {
+        res.send(merchants)
+        return
+    }
+
+    let genetic = initializeGeneticSystem(referringMerchant, merchants);
     
     let genetic_team = genetic.select();
     
@@ -51,3 +41,27 @@ app.post('/merchants', function(req, res) {
     console.log(genetic_team)
     res.send(genetic_team)
 });
+
+function initializeGeneticSystem(referringMerchant, merchants): Genetic {
+    return new Genetic(referringMerchant, merchants, team_size, dispersion, fitness, {
+        mutation_probability: 0.01,
+        crossover_probability: 0.80,
+        population: 50,
+        iterations: 100
+    })
+}
+
+function createMerchantFrom(merchant, id) {
+    return {
+        city : 1,
+        lat : merchant.coordinates.lat,
+        lng : merchant.coordinates.lng,
+
+        ateco: merchant.ateco,
+        owner : merchant.name,
+        id : id,
+        capability : 1,
+        coupons : 1,
+        sort: null
+    }
+}

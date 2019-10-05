@@ -47,5 +47,7 @@ app.post('/merchants', function(req, res) {
     //console.log('[Genetic] Fitness:', genetic.metrics.fitness);
     //console.log('[Genetic] Iterations:', genetic.iterations.length);
 
+    console.log("team:")
+    console.log(genetic_team)
     res.send(genetic_team)
 });

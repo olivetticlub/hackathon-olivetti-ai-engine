@@ -3,7 +3,7 @@
   "simulations_path": "./outputs",
   "training_sets_path": "./training-sets",
   "ranking": {
-    "alfa_diversity": 100,
-    "alfa_dispersion": 10
+    "alfa_diversity": 10,
+    "alfa_dispersion": 1000
   }
 }

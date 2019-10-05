@@ -22,8 +22,8 @@ app.post('/merchants', function(req, res) {
     for(let id in merchantsjson) {
         merchants.push({
             city : 1,
-            lat : merchantsjson[id].lat,
-            lng : merchantsjson[id].lng,
+            lat : merchantsjson[id].coordinates.lat,
+            lng : merchantsjson[id].coordinates.lng,
 
             ateco: merchantsjson[id].ateco,
             owner : merchantsjson[id].name,
@@ -37,7 +37,7 @@ app.post('/merchants', function(req, res) {
     let genetic = new Genetic(referringMerchant, merchants, team_size, dispersion, fitness, {
         mutation_probability: 0.01,
         crossover_probability: 0.80,
-        population: 100,
+        population: 50,
         iterations: 100
     });
     

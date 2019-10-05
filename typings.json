@@ -1,0 +1,12 @@
+{
+  "globalDependencies": {
+    "node": "registry:dt/node#7.0.0+20170110233017"
+  },
+  "dependencies": {
+    "fs-extra": "registry:dt/fs-extra#0.0.0+20170109012028",
+    "haversine": "file:custom-typings/haversine/typings.json",
+    "kmeans-node": "file:custom-typings/clusterfck/typings.json",
+    "node-kmeans": "file:custom-typings/node-kmeans/typings.json",
+    "random-weighted-choice": "file:custom-typings/random-weighted-choice/typings.json"
+  }
+}

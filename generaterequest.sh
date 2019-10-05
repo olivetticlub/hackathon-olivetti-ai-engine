@@ -1,6 +1,6 @@
 #!/bin/bash
 
-qty=$1
+qty=100
 
 function aMerchant() {
     echo "{\"coordinates\":{\"lat\": $1, \"lng\": $2}, \"ateco\": $3, \"name\": \"$4\"}"

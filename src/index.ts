@@ -13,7 +13,7 @@ app.use(express.json());
 app.listen(port)
 app.post('/merchants', function(req, res) {
     let request = req.body
-    let referringMerchant = request.referringMerchant
+    let referringMerchant = createMerchantFrom(request.referringMerchant, 0)
     let merchantsjson = request.merchantsPool
     
     console.log("received request:")

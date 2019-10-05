@@ -3,7 +3,7 @@
 qty=$1
 
 function aMerchant() {
-    echo "{\"lat\": $1, \"lng\": $2, \"ateco\": $3, \"name\": \"$4\"}"
+    echo "{\"coordinates\":{\"lat\": $1, \"lng\": $2}, \"ateco\": $3, \"name\": \"$4\"}"
 }
 
 referringMerchant=$(aMerchant 0 0 1 referringMerchant)
@@ -17,7 +17,7 @@ do
     ateco=$((1 + RANDOM % 10))
     name=$((RANDOM % 180))
     merchant=$(aMerchant $lat $lng $ateco $name)
-    request="$request{\"lat\": $lat, \"lng\": $lng, \"ateco\": $ateco, \"name\": \"$name\"},"
+    request="$request$merchant,"
 done
 request="${request%?}]}"
 

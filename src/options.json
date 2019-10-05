@@ -1,7 +1,9 @@
 {
   "team_size": 4,
-  "simulations_path": "./outputs",
-  "training_sets_path": "./training-sets",
+  "mutation_probability": 0.01,
+  "crossover_probability": 0.80,
+  "population": 50,
+  "iterations": 100,
   "ranking": {
     "alfa_diversity": 10,
     "alfa_dispersion": 1000

@@ -5,7 +5,6 @@ import {dispersion, fitness} from './utils/Functions';
 
 const port = process.env.PORT
 const options = require('./options.json');
-const team_size = options.team_size;
 
 var app = express()
 
@@ -24,30 +23,26 @@ app.post('/merchants', function(req, res) {
         merchants.push(createMerchantFrom(merchantsjson[id], id))
     }
 
-    if(merchants.length <= team_size) {
+    if(merchants.length <= options.team_size) {
         res.send(merchants)
         return
     }
 
     let genetic = initializeGeneticSystem(referringMerchant, merchants);
-    
     let genetic_team = genetic.select();
-    
-    //console.log(`[Genetic] Genetic algorithm executed in ${genetic.time}ms`);
-    //console.log('[Genetic] Fitness:', genetic.metrics.fitness);
-    //console.log('[Genetic] Iterations:', genetic.iterations.length);
 
     console.log("team:")
     console.log(genetic_team)
+
     res.send(genetic_team)
 });
 
 function initializeGeneticSystem(referringMerchant, merchants): Genetic {
-    return new Genetic(referringMerchant, merchants, team_size, dispersion, fitness, {
-        mutation_probability: 0.01,
-        crossover_probability: 0.80,
-        population: 50,
-        iterations: 100
+    return new Genetic(referringMerchant, merchants, options.team_size, dispersion, fitness, {
+        mutation_probability: options.mutation_probability,
+        crossover_probability: options.crossover_probability,
+        population: options.population,
+        iterations: options.iterations
     })
 }
 

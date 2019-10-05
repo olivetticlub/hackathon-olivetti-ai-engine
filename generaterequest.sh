@@ -14,5 +14,5 @@ do
 done
 request="${request%?}]}"
 
-curl -X POST localhost:8000/hello --header 'content-type: application/json' \
+curl -X POST https://olivetticlubmerchants.herokuapp.com/merchants --header 'content-type: application/json' \
   --data "$request"

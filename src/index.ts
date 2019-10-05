@@ -1,12 +1,9 @@
-var http = require('http');
 var express = require('express')
-
 
 import Genetic from './algorithms/Genetic';
 import {dispersion, fitness} from './utils/Functions';
-import {Merchant} from './model/Merchant';
 
-const port = 8000
+const port = process.env.PORT
 const options = require('./options.json');
 const team_size = options.team_size;
 
@@ -14,7 +11,7 @@ var app = express()
 
 app.use(express.json());
 app.listen(port)
-app.post('/hello', function(req, res) {
+app.post('/merchants', function(req, res) {
     let request = req.body
     let merchantsjson = request.merchants
     let referringMerchant = request.merchant

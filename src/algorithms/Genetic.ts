@@ -1,7 +1,5 @@
 import {Merchant} from '../model/Merchant';
 import {Team} from '../model/Team';
-import {Metrics} from '../model/Metrics';
-import {get_metrics} from '../utils/Functions';
 
 export interface Element {
     fitness: number;
@@ -27,7 +25,6 @@ export default class Genetic
     private _options: GeneticOptions;
     private _time: number;
     private _fitness_sum: number;
-    private _metrics: Metrics;
     private _iterations: number[] = [];
 
     /**
@@ -82,8 +79,6 @@ export default class Genetic
 
         this._time = Date.now() - start_selection;
 
-        this._metrics = get_metrics(this._merchant, population[0].team, this._dispersion, this._fitness);
-
         return population[0].team;
     }
 
@@ -93,12 +88,6 @@ export default class Genetic
     {
         return this._time;
     }
-
-    public get metrics(): Metrics
-    {
-        return this._metrics;
-    }
-
 
     public get iterations(): number[]
     {

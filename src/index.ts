@@ -53,15 +53,11 @@ function initializeGeneticSystem(referringMerchant, merchants): Genetic {
 
 function createMerchantFrom(merchant, id) {
     return {
-        city : 1,
+        id : id,
+        owner : merchant.name,
         lat : merchant.coordinates.lat,
         lng : merchant.coordinates.lng,
-
         ateco: merchant.ateco,
-        owner : merchant.name,
-        id : id,
-        capability : 1,
-        coupons : 1,
         sort: null
     }
 }

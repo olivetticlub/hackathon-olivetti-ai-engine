@@ -13,8 +13,8 @@ app.use(express.json());
 app.listen(port)
 app.post('/merchants', function(req, res) {
     let request = req.body
-    let merchantsjson = request.merchants
-    let referringMerchant = request.merchant
+    let referringMerchant = request.referringMerchant
+    let merchantsjson = request.merchantsPool
     
     let merchants = []
     for(let id in merchantsjson) {
